@@ -1,31 +1,32 @@
 import { LightningElement, api } from 'lwc';
-
-// Define CSS class constants
 const TILE_WRAPPER_SELECTED_CLASS = 'tile-wrapper selected';
 const TILE_WRAPPER_UNSELECTED_CLASS = 'tile-wrapper';
+
 
 export default class BoatTile extends LightningElement {
     // Input properties
     @api boat; // The boat record to display
     @api selectedBoatId; // The currently selected boat ID
 
-    // Dynamically apply the CSS class based on whether this boat is selected
-    // get tileClass() {
-    //     return this.boat.Id === this.selectedBoatId
-    //         ? TILE_WRAPPER_SELECTED_CLASS
-    //         : TILE_WRAPPER_UNSELECTED_CLASS;
-    // }
+    get tileClass() {
+        return this.boat.Id === this.selectedBoatId
+          ? TILE_WRAPPER_SELECTED_CLASS
+          : TILE_WRAPPER_UNSELECTED_CLASS;
+      }
+      
+      get backgroundImageUrl() {
+        // Construct full URL from relative Picture__c path
+        if (this.boat?.Picture__c) {
+          const baseUrl = window.location.origin;
+          return `${baseUrl}${this.boat.Picture__c}`;
+        }
+        return ''; // or return a default fallback image URL
+      }
 
-    // Dynamically set the background image of the tile
-    // get backgroundStyle() {
-    //     return `background-image:url(${this.boat.Picture__c})`;
-    // }
+    selectBoat(){
+        const boatselect = new CustomEvent('boatselect', {
+            detail: {boatId: this.boat.Id}
+        });
+    }
 
-    // Handle click and dispatch boatselect event with boat Id
-    // selectBoat() {
-    //     const selectedEvent = new CustomEvent('boatselect', {
-    //         detail: { boatId: this.boat.Id }
-    //     });
-    //     this.dispatchEvent(selectedEvent);
-    // }
 }

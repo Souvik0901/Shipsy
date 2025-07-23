@@ -2,14 +2,15 @@
  * @description       : 
  * @author            : Souvik Sen
  * @group             : 
- * @last modified on  : 07-22-2025
+ * @last modified on  : 07-23-2025
  * @last modified by  : Souvik Sen
 **/
 public with sharing class BoatDataService {
 
    @AuraEnabled(cacheable=true)
    public static List<Boat__c>getBoats(){
-        return [SELECT Id, Name, BoatType__c, Length__c, Price__c 
+        return [SELECT Id, Name, BoatType__c, BoatType__r.Name, Length__c, Price__c,
+                       Picture__c, Contact__r.Name
                  FROM Boat__c 
                  WITH SECURITY_ENFORCED];
    }

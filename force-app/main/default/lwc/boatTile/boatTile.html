@@ -6,14 +6,15 @@
   @last modified by  : Souvik Sen
 -->
 <template>
-    <div>
-      <img class="product-img" src="https://bucket-souvik.s3.ap-south-1.amazonaws.com/ebike1.jpg" alt="image"></img>
+    <div onclick={selectBoat} class={tileClass}>
+      <!-- <div style={backgroundStyle} class="tile"></div> -->
+      <img class="product-img" src={backgroundImageUrl} alt="image"></img>
       <div class="lower-third">
-        <h1 class="slds-truncate slds-text-heading_medium">WT Boat</h1>
-        <h2 class="slds-truncate slds-text-heading_small">Souvik Sen</h2>
-        <div class="slds-text-body_small">Price: <lightning-formatted-number value=980 maximum-fraction-digits="2"></lightning-formatted-number></div>
-        <div class="slds-text-body_small">Length: 67</div>
-        <div class="slds-text-body_small">Type: Sounder </div>
+        <h1 class="slds-truncate slds-text-heading_medium">{boat.name}</h1>
+        <h2 class="slds-truncate slds-text-heading_small">{boat.Contact__r.Name}</h2>
+        <div class="slds-text-body_small">Price: <lightning-formatted-number value={boat.Price__c} maximum-fraction-digits="2"></lightning-formatted-number></div>
+        <div class="slds-text-body_small">Length: {boat.Length__c}</div>
+        <div class="slds-text-body_small">Type: {boat.BoatType__r.Name} </div>
       </div>
     </div>
   </template>

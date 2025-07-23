@@ -13,10 +13,12 @@ export default class BoatSearch extends NavigationMixin(LightningElement) {
     this.isLoading = false;
   }
 
+  // this method is used for handling the search event from the child component
   searchBoats(event) {
     this.boatTypeId = event.detail.boatTypeId;
   }
 
+  // this method is used for creating new boat records 
   createNewBoat() {
     this[NavigationMixin.Navigate]({
       type: 'standard__objectPage',

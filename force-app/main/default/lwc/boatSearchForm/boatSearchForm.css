@@ -1,0 +1,11 @@
+.centered-combobox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 1rem;
+  }
+  
+  .centered-combobox lightning-combobox {
+    width: 300px; 
+  }

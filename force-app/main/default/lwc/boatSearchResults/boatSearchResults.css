@@ -1,0 +1,22 @@
+:host {
+    display: block;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Optional: style scrollable area */
+  .slds-scrollable_y {
+    max-height: 75vh;
+    overflow-y: auto;
+    padding: 0.5rem;
+    background-color: #ffffff;
+  }
+  
+  /* Optional: spacing between tiles */
+  c-boat-tile {
+    display: block;
+    height: 100%;
+    border-radius: 0.5rem;
+  }

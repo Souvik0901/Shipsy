@@ -16,3 +16,11 @@
     cursor: pointer;
     padding: 5px;
   }
+  
+  .lower-third{
+    padding-top: 0.5rem;
+    background-color: rgb(229, 229, 229);
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+  }

@@ -1,4 +1,4 @@
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, track, wire, api } from 'lwc';
 import getBoats from '@salesforce/apex/BoatDataService.getBoats';
 import { refreshApex } from '@salesforce/apex';
 
@@ -12,8 +12,12 @@ export default class BoatSearchResults extends LightningElement {
 // @wire(MessageContext)
 // messageContext;
 
-  @wire(getBoats)
+  //private backing field
+  _boatTypeId;
+
+  @wire(getBoats, { boatTypeId: '$_boatTypeId' })
   wiredBoats(result) {
+    console.log('Wired getBoats called with:', this._boatTypeId);
     this.wiredBoatsResult = result;
     if (result.data) {
       this.boats = result.data; // Only store the list of boats
@@ -24,6 +28,15 @@ export default class BoatSearchResults extends LightningElement {
     }
   }
 
+  @api
+  set boatTypeId(value) {
+    this._boatTypeId = value;
+    console.log('boatSearchResults received boatTypeId:', value);
+  }
+
+  get boatTypeId() {
+    return this._boatTypeId;
+  }
 
   refresh() {
     this.isLoading = true;

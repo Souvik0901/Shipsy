@@ -6,31 +6,33 @@ export default class BoatSearchForm extends LightningElement {
   //components properties
   selectedBoatTypeId = ''; //holds the curently select Boat type's ID (used for filtering)
   error;                   //stores any error from Apex Class( for debugging / display errors)
-  searchOptions = [];      //stores the formatted options for lighting-comobox
+  boatTypesOptions = [];      //stores the formatted options for lighting-comobox
 
 
   @wire(getBoatTypes)
   boatTypes({ error, data }) {
     if (Array.isArray(data)) {
-      this.searchOptions = data.map(type => ({
+      this.boatTypesOptions = data.map(type => ({
         label: type.Name,
         value: type.Id
       }));
-      this.searchOptions.unshift({ label: 'All Types', value: '' });
+      this.boatTypesOptions.unshift({ label: 'All Types', value: '' });
     } else if (error) {
-      this.searchOptions = undefined;
+      this.boatTypesOptions = undefined;
       this.error = error;
       console.error('Error loading boat types:', error);
     }
   }
 
 //	Updates selected boat type and dispatches event
-  handleSearchOptionChange(event) {
+  handleOptionChange(event) {
       this.selectedBoatTypeId = event.detail.value;
       const searchEvent = new CustomEvent('search', {
         detail: { boatTypeId: this.selectedBoatTypeId }
       });
       this.dispatchEvent(searchEvent);
+
+      console.log('Dispatching boatTypeId:', this.selectedBoatTypeId);
     }
     
 }

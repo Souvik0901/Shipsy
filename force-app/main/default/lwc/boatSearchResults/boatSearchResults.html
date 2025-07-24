@@ -2,7 +2,7 @@
   @description       : 
   @author            : Souvik Sen
   @group             : 
-  @last modified on  : 07-23-2025
+  @last modified on  : 07-24-2025
   @last modified by  : Souvik Sen
 -->
 <template>
@@ -22,8 +22,6 @@
               >
                 <c-boat-tile
                   boat={boat}
-                  selected-boat-id={selectedBoatId}
-                  onboatselect={updateSelectedTile}
                 ></c-boat-tile>
               </lightning-layout-item>
             </template>
@@ -32,6 +30,12 @@
       </lightning-tab>
 
       <!-- Additional tabs like Boat Editor and Boats Near Me can go here -->
+      <lightning-tab label="Boat Editor">
+      </lightning-tab>
+
+      <lightning-tab label="Boats Near Me">
+      </lightning-tab>
+
     </lightning-tabset>
   </template>
 </template>

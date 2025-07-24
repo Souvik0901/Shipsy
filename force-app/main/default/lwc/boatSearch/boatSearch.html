@@ -1,13 +1,14 @@
 <!--
-  @description       : 
+  @description       : this is a html page for the boat search section 
   @author            : Souvik Sen
   @group             : 
-  @last modified on  : 07-23-2025
+  @last modified on  : 07-24-2025
   @last modified by  : Souvik Sen
 -->
 <template>
     <lightning-layout multiple-rows>
-      <!-- Top -->
+      
+      <!-- Top View of Search Layout -->
       <lightning-layout-item size="12">
         <lightning-card title="Find a Boat">
           <lightning-button
@@ -20,18 +21,14 @@
           </p>
         </lightning-card>
       </lightning-layout-item>
+
   
-      <!-- Bottom -->
+      <!-- Bottom View of Search Layout -->
       <lightning-layout-item size="12" class="slds-p-top_small slds-is-relative">
-        <template if:true={isLoading}>
-          <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
-        </template>
         <c-boat-search-results
-          onloading={handleLoading}
-          ondoneloading={handleDoneLoading}
           boat-type-id={boatTypeId}
         ></c-boat-search-results>
       </lightning-layout-item>
+
     </lightning-layout>
 </template>
-  

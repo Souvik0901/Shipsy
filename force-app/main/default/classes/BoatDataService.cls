@@ -1,7 +1,7 @@
 /**
  * @description       : Boat data service for boat search and update
  * @author            : Souvik Sen
- * @group             : 
+ * @group             : CK
  * @last modified on  : 07-31-2025
  * @last modified by  : Souvik Sen
 **/
@@ -35,7 +35,6 @@ public with sharing class BoatDataService {
    }
 
 
-   
    /**
    * @description methods used to get the similar Boats for the selected BoatType
    * @author Souvik Sen | 07-31-2025 
@@ -52,8 +51,7 @@ public with sharing class BoatDataService {
     return Database.query(query);
    }
 
-
-      
+   
    /**
    * @description used to update boats data from ShipAgency UI Page
    * @author Souvik Sen | 07-31-2025 

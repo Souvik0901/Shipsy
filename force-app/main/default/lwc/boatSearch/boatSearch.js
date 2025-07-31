@@ -1,3 +1,10 @@
+/**
+ * @description       : JS File for Boat Search Page
+ * @author            : Souvik Sen
+ * @group             : CK
+ * @last modified on  : 07-31-2025
+ * @last modified by  : Souvik Sen
+**/
 import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 

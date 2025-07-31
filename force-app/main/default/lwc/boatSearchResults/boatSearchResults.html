@@ -2,7 +2,7 @@
   @description       : 
   @author            : Souvik Sen
   @group             : 
-  @last modified on  : 07-24-2025
+  @last modified on  : 07-31-2025
   @last modified by  : Souvik Sen
 -->
 <template>
@@ -31,6 +31,17 @@
 
       <!-- Additional tabs like Boat Editor and Boats Near Me can go here -->
       <lightning-tab label="Boat Editor">
+        <template if:true={boats}>
+          <lightning-datatable
+            key-field="Id"
+            data={boats}
+            columns={columns}
+            onsave={handleSave}
+            draft-values={draftValues}
+            hide-checkbox-column
+          >
+          </lightning-datatable>
+        </template>
       </lightning-tab>
 
       <lightning-tab label="Boats Near Me">

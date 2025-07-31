@@ -4,8 +4,8 @@ import getBoatTypes from '@salesforce/apex/BoatDataService.getBoatTypes';
 export default class BoatSearchForm extends LightningElement {
 
   //components properties
-  selectedBoatTypeId = ''; //holds the curently select Boat type's ID (used for filtering)
-  error;                   //stores any error from Apex Class( for debugging / display errors)
+  selectedBoatTypeId = '';    //holds the curently select Boat type's ID (used for filtering)
+  error;                      //stores any error from Apex Class( for debugging / display errors)
   boatTypesOptions = [];      //stores the formatted options for lighting-comobox
 
 
@@ -24,6 +24,7 @@ export default class BoatSearchForm extends LightningElement {
     }
   }
 
+  
 //	Updates selected boat type and dispatches event
   handleOptionChange(event) {
       this.selectedBoatTypeId = event.detail.value;
@@ -33,6 +34,6 @@ export default class BoatSearchForm extends LightningElement {
       this.dispatchEvent(searchEvent);
 
       console.log('Dispatching boatTypeId:', this.selectedBoatTypeId);
-    }
+  }
     
 }

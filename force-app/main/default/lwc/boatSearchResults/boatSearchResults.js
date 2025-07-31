@@ -1,19 +1,35 @@
 import { LightningElement, track, wire, api } from 'lwc';
 import getBoats from '@salesforce/apex/BoatDataService.getBoats';
 import { refreshApex } from '@salesforce/apex';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import updateBoatList from '@salesforce/apex/BoatDataService.updateBoatList';
+
+const SUCCESS_VARIANT = 'success';
+const SUCCESS_TITLE = 'Success';
+const MESSAGE_SHIP_IT = 'Ship It!';
+const ERROR_TITLE = 'Error';
+const ERROR_VARIANT = 'error';
+
 
 export default class BoatSearchResults extends LightningElement {
   @track boats; // now stores only the boat data
   @track error;
+  @track draftValues = [];
   isLoading = false;
   wiredBoatsResult;  // stores the result for refresh Apex
 
-// @track selectedBoatId;
-// @wire(MessageContext)
-// messageContext;
-
   //private backing field
   _boatTypeId;
+
+
+  columns = [
+    { label: 'Name', fieldName: 'Name', type: 'text', editable: true },
+    { label: 'Length', fieldName: 'Length__c', type: 'number', editable: true },
+    { label: 'Price', fieldName: 'Price__c', type: 'currency', editable: true },
+    { label: 'Description', fieldName: 'Description__c', type: 'text', editable: true }
+    // Add more columns as needed
+  ];
+
 
   @wire(getBoats, { boatTypeId: '$_boatTypeId' })
   wiredBoats(result) {
@@ -40,16 +56,40 @@ export default class BoatSearchResults extends LightningElement {
 
   refresh() {
     this.isLoading = true;
-    return refreshApex(this.wiredBoatsResult)
-      .finally(() => {
+    return refreshApex(this.wiredBoatsResult).finally(() => {
         this.isLoading = false;
       });
   }
 
-  // updateSelectedTile(event) {
-  //   this.selectedBoatId = event.detail.boatId;
-  //   publish(this.messageContext, BOATMC, {
-  //     recordId: this.selectedBoatId
-  //   });
-  // }
+
+async handleSave(event){
+  const updatedFields = event.detail.draftValues;
+  try {
+    this.isLoading = true;
+    await updateBoatList({ data: updatedFields });
+    this.dispatchEvent(
+      new ShowToastEvent({
+        title: SUCCESS_TITLE,
+        message: MESSAGE_SHIP_IT,
+        variant: SUCCESS_VARIANT
+      })
+    );
+    this.draftValues = [];
+    await this.refresh(); // refresh data and stop spinner
+
+  } catch (error) {
+    this.dispatchEvent(
+      new ShowToastEvent({
+        title: ERROR_TITLE,
+        message: error.body?.message || error.message,
+        variant: ERROR_VARIANT
+      })
+    );
+  }
+}
+
+
+
+
+
 }

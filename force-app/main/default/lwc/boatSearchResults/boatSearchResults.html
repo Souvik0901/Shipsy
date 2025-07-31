@@ -1,13 +1,15 @@
 <!--
-  @description       : 
+  @description       : HTML file used for Boat Search Results UI page
   @author            : Souvik Sen
-  @group             : 
+  @group             : CK
   @last modified on  : 07-31-2025
   @last modified by  : Souvik Sen
 -->
 <template>
   <template if:true={boats}>
     <lightning-tabset>
+
+      <!-- Additional tabs like Galary can go here -->
       <lightning-tab label="Gallery">
         <div class="slds-scrollable_y">
           <lightning-layout horizontal-align="center" multiple-rows>
@@ -29,7 +31,7 @@
         </div>
       </lightning-tab>
 
-      <!-- Additional tabs like Boat Editor and Boats Near Me can go here -->
+      <!-- Additional tabs like Boat Editor can go here -->
       <lightning-tab label="Boat Editor">
         <template if:true={boats}>
           <lightning-datatable
@@ -44,6 +46,7 @@
         </template>
       </lightning-tab>
 
+      <!-- Additional tabs like Boats Near Me can go here -->
       <lightning-tab label="Boats Near Me">
       </lightning-tab>
 

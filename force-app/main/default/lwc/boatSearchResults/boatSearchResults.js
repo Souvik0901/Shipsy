@@ -1,3 +1,10 @@
+/**
+ * @description       : JS file for Boat Search Results UI Page
+ * @author            : Souvik Sen
+ * @group             : CK
+ * @last modified on  : 07-31-2025
+ * @last modified by  : Souvik Sen
+**/
 import { LightningElement, track, wire, api } from 'lwc';
 import getBoats from '@salesforce/apex/BoatDataService.getBoats';
 import { refreshApex } from '@salesforce/apex';
@@ -62,34 +69,30 @@ export default class BoatSearchResults extends LightningElement {
   }
 
 
-async handleSave(event){
-  const updatedFields = event.detail.draftValues;
-  try {
-    this.isLoading = true;
-    await updateBoatList({ data: updatedFields });
-    this.dispatchEvent(
-      new ShowToastEvent({
-        title: SUCCESS_TITLE,
-        message: MESSAGE_SHIP_IT,
-        variant: SUCCESS_VARIANT
-      })
-    );
-    this.draftValues = [];
-    await this.refresh(); // refresh data and stop spinner
+  async handleSave(event){
+    const updatedFields = event.detail.draftValues;
+    try {
+      this.isLoading = true;
+      await updateBoatList({ data: updatedFields });
+      this.dispatchEvent(
+        new ShowToastEvent({
+          title: SUCCESS_TITLE,
+          message: MESSAGE_SHIP_IT,
+          variant: SUCCESS_VARIANT
+        })
+      );
+      this.draftValues = [];
+      await this.refresh(); // refresh data and stop spinner
 
-  } catch (error) {
-    this.dispatchEvent(
-      new ShowToastEvent({
-        title: ERROR_TITLE,
-        message: error.body?.message || error.message,
-        variant: ERROR_VARIANT
-      })
-    );
+    } catch (error) {
+      this.dispatchEvent(
+        new ShowToastEvent({
+          title: ERROR_TITLE,
+          message: error.body?.message || error.message,
+          variant: ERROR_VARIANT
+        })
+      );
+    }
   }
-}
-
-
-
-
 
 }

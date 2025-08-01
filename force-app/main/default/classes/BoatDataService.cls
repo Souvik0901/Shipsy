@@ -92,32 +92,19 @@ public with sharing class BoatDataService {
         Decimal minLng = longitude - radius;
         Decimal maxLng = longitude + radius;
 
-        //without boatType filter
-        if(String.isBlank(boatTypeId)){
+        
+        //with boatType filter
+        if(String.isNotBlank(boatTypeId)){
         return [
             SELECT Id, Name, Geolocation__Latitude__s, Geolocation__Longitude__s, BoatType__c, BoatType__r.Name
             FROM Boat__c
-            WHERE Geolocation__Latitude__s != null AND Geolocation__Longitude__s != NULL 
-                AND Geolocation__Latitude__s >= :minLat
-                AND Geolocation__Latitude__s <= :maxLat
-                AND Geolocation__Longitude__s >= :minLng
-                AND Geolocation__Longitude__s <= :maxLng
+            WHERE  BoatType__c = :boatTypeId
             LIMIT 10
         ];
         }
-
-        
-        //with boatType filter
-        
         return [
             SELECT Id, Name, Geolocation__Latitude__s, Geolocation__Longitude__s, BoatType__c, BoatType__r.Name
             FROM Boat__c
-            WHERE Geolocation__Latitude__s != null AND Geolocation__Longitude__s != NULL 
-                AND Geolocation__Latitude__s >= :minLat
-                AND Geolocation__Latitude__s <= :maxLat
-                AND Geolocation__Longitude__s >= :minLng
-                AND Geolocation__Longitude__s <= :maxLng
-                AND BoatType__c = :boatTypeId
             LIMIT 10
         ];
         

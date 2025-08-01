@@ -12,26 +12,15 @@
       </template>
   
       <template if:false={isLoading}>
-        <div class="slds-grid slds-wrap">
+       
             <!-- Map Section -->
-            <div class="slds-col slds-size_2-of-3 slds-p-around_small">
+            <div class="slds-col slds-p-around_small">
               <lightning-map
                 map-markers={mapMarkers}
                 zoom-level="10"
                 markers-title="Boats Nearby"
               ></lightning-map>
             </div>
-
-            <!-- Sidebar for Boat List -->
-            <div class="slds-col slds-size_1-of-3 slds-p-around_small sidebar">
-                <template for:each={boatList} for:item="boat">
-                  <div key={boat.Id} class="slds-box slds-box_xx-small slds-m-bottom_x-small">
-                    <strong>{boat.Name}</strong>
-                    <div class="slds-text-body_small">{boat.BoatType__r.Name}</div>
-                  </div>
-                </template>
-              </div>
-          </div>
     
       </template>
   

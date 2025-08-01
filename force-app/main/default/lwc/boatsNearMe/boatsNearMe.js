@@ -38,12 +38,19 @@ export default class BoatsNearMe extends LightningElement {
   }
 
   getBoats() {
+    console.log('Calling Apex getBoatsByLocation with:', {
+        latitude: this.latitude,
+        longitude: this.longitude,
+        boatTypeId: this.boatTypeId
+      });
+    
     getBoatsByLocation({
       latitude: this.latitude,
       longitude: this.longitude,
       boatTypeId: this.boatTypeId
     })
       .then((data) => {
+        console.log('Boats data received from Apex:', data);
         this.boatList = data; // Save for sidebar
         this.createMapMarkers(data);
         this.isLoading = false;

@@ -1,0 +1,40 @@
+<!--
+  @description       : this html page used to display the boats near by using google map api
+  @author            : Souvik Sen
+  @group             : CK
+  @last modified on  : 08-01-2025
+  @last modified by  : Souvik Sen
+-->
+<template>
+    <lightning-card class="slds-is-relative">
+      <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
+      </template>
+  
+      <template if:false={isLoading}>
+        <div class="slds-grid slds-wrap">
+            <!-- Map Section -->
+            <div class="slds-col slds-size_2-of-3 slds-p-around_small">
+              <lightning-map
+                map-markers={mapMarkers}
+                zoom-level="10"
+                markers-title="Boats Nearby"
+              ></lightning-map>
+            </div>
+
+            <!-- Sidebar for Boat List -->
+            <div class="slds-col slds-size_1-of-3 slds-p-around_small sidebar">
+                <template for:each={boatList} for:item="boat">
+                  <div key={boat.Id} class="slds-box slds-box_xx-small slds-m-bottom_x-small">
+                    <strong>{boat.Name}</strong>
+                    <div class="slds-text-body_small">{boat.BoatType__r.Name}</div>
+                  </div>
+                </template>
+              </div>
+          </div>
+    
+      </template>
+  
+      <div slot="footer">Top 10 Only!</div>
+    </lightning-card>
+</template>

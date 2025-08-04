@@ -2,7 +2,7 @@
  * @description       : JS file for Boat Search Results UI Page
  * @author            : Souvik Sen
  * @group             : CK
- * @last modified on  : 07-31-2025
+ * @last modified on  : 08-04-2025
  * @last modified by  : Souvik Sen
 **/
 import { LightningElement, track, wire, api } from 'lwc';
@@ -69,6 +69,8 @@ export default class BoatSearchResults extends LightningElement {
   }
 
 
+
+  // this is an async function to make sure it runs after the wire method
   async handleSave(event){
     const updatedFields = event.detail.draftValues;
     try {

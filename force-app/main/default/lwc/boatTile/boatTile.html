@@ -2,17 +2,16 @@
   @description       : Html page used for Bola Tile creation
   @author            : Souvik Sen
   @group             : CK
-  @last modified on  : 07-31-2025
+  @last modified on  : 08-04-2025
   @last modified by  : Souvik Sen
 -->
 <template>
     <div >
-      <!-- <div style={backgroundStyle} class="tile"></div> -->
       <img class="product-img" src={boatImageUrl} alt="image"></img>
       <div class="lower-third">
-        <h1 class="slds-truncate slds-text-heading_medium">{boat.name}</h1>
+        <h1 class="slds-truncate slds-text-heading_medium">{boat.Name}</h1>
         <h2 class="slds-truncate slds-text-heading_small">{boat.Contact__r.Name}</h2>
-        <div class="slds-text-body_small">Price: <lightning-formatted-number value={boat.Price__c} maximum-fraction-digits="2"></lightning-formatted-number>
+        <div class="slds-text-body_small">Price: $<lightning-formatted-number value={boat.Price__c} maximum-fraction-digits="2"></lightning-formatted-number>
         </div>
         <div class="slds-text-body_small">Length: {boat.Length__c}</div>
         <div class="slds-text-body_small">Type: {boat.BoatType__r.Name} </div>
